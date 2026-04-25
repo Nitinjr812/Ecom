@@ -1,60 +1,35 @@
 import React, { useState } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
-<<<<<<< HEAD
-=======
 import { useNavigate } from "react-router-dom";
->>>>>>> nitin
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
 
-<<<<<<< HEAD
-    const navItems = ["Home", "About", "Products", "More"];
-    const minSwipeDistance = 50;
+    const navigate = useNavigate();
 
-    // Swipe Start
-=======
     const navItems = ["Home", "About", "Products", "Cart"];
     const minSwipeDistance = 50;
 
->>>>>>> nitin
     const onTouchStart = (e) => {
         setTouchEnd(null);
         setTouchStart(e.targetTouches[0].clientX);
     };
 
-<<<<<<< HEAD
-    // Swipe Move
     const onTouchMove = (e) => {
         setTouchEnd(e.targetTouches[0].clientX);
     };
 
-    // Swipe End
-=======
-    const onTouchMove = (e) => {
-        setTouchEnd(e.targetTouches[0].clientX);
-    };
->>>>>>> nitin
     const onTouchEnd = () => {
         if (!touchStart || !touchEnd) return;
 
         const distance = touchStart - touchEnd;
 
-<<<<<<< HEAD
-        // Right to Left swipe = open sidebar
-=======
->>>>>>> nitin
         if (distance > minSwipeDistance) {
             setIsOpen(true);
         }
     };
-<<<<<<< HEAD
-=======
-    const navigate = useNavigate()
-
->>>>>>> nitin
 
     return (
         <div
@@ -73,51 +48,24 @@ const Navbar = () => {
                     </h1>
 
                     {/* Desktop Menu */}
-<<<<<<< HEAD
                     <div className="hidden md:flex gap-6">
-=======
-                    <div className="hidden  md:flex gap-6">
->>>>>>> nitin
                         {navItems.map((item, index) => (
-                            <div
-                                key={index}
-                                className="relative group cursor-pointer"
-                            >
-                                <p className="text-white text-sm font-medium">
-                                    {item}
-                                </p>
-
+                            <div key={index} className="relative group cursor-pointer">
+                                <p className="text-white text-sm font-medium">{item}</p>
                                 <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
                             </div>
                         ))}
                     </div>
 
-<<<<<<< HEAD
                     {/* Desktop Button */}
                     <button
-=======
-                    <button onClick={()=>{
-                        navigate("/auth")
-                    }}
->>>>>>> nitin
-                        className="
-                            hidden md:block
-                            px-4 py-2 rounded-lg
-                            text-sm font-medium text-white
-                            border border-white/30
-                            bg-white/10 backdrop-blur-md
-                            hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]
-                            transition-all duration-300
-                        "
+                        onClick={() => navigate("/auth")}
+                        className="hidden md:block px-4 py-2 rounded-lg text-sm font-medium text-white border border-white/30 bg-white/10 backdrop-blur-md hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300"
                     >
                         Sign Up
-<<<<<<< HEAD
                     </button>
 
                     {/* Mobile Hamburger */}
-=======
-                    </button> 
->>>>>>> nitin
                     <button
                         onClick={() => setIsOpen(true)}
                         className="md:hidden text-white"
@@ -130,46 +78,27 @@ const Navbar = () => {
             {/* Overlay */}
             <div
                 onClick={() => setIsOpen(false)}
-<<<<<<< HEAD
-                className={`fixed inset-0 bg-black/40 z-40 transition-all duration-300 md:hidden ${
-                    isOpen
+                className={`fixed inset-0 bg-black/40 z-40 transition-all duration-300 md:hidden ${isOpen
                         ? "opacity-100 visible"
                         : "opacity-0 invisible"
-                }`}
-=======
-                className={`fixed inset-0 bg-black/40 z-40 transition-all duration-300 md:hidden ${isOpen
-                    ? "opacity-100 visible"
-                    : "opacity-0 invisible"
                     }`}
->>>>>>> nitin
             ></div>
 
-            {/* Mobile Sidebar Slider */}
+            {/* Mobile Sidebar */}
             <div
                 className={`fixed top-0 right-0 h-screen w-[240px] z-50
                 bg-[#111827] text-white p-5
                 transition-all duration-300 md:hidden
-<<<<<<< HEAD
-                ${
-                    isOpen
-                        ? "translate-x-0"
-                        : "translate-x-full"
-                }`}
-=======
-                ${isOpen
-                        ? "translate-x-0"
-                        : "translate-x-full"
-                    }`}
->>>>>>> nitin
+                ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
-                {/* Close Button */}
+                {/* Close */}
                 <div className="flex justify-end">
                     <button onClick={() => setIsOpen(false)}>
                         <X size={24} />
                     </button>
                 </div>
 
-                {/* Sidebar Menu */}
+                {/* Menu */}
                 <div className="mt-8 flex flex-col gap-6">
                     {navItems.map((item, index) => (
                         <div
@@ -181,35 +110,18 @@ const Navbar = () => {
                         </div>
                     ))}
 
-                    {/* Glow Button */}
+                    {/* 🔥 MOBILE SIGNUP BUTTON */}
                     <button
-                        className="
-                            mt-4
-                            px-4 py-2 rounded-lg
-                            border border-white/20
-                            bg-white/10
-                            hover:shadow-[0_0_15px_rgba(255,255,255,0.4)]
-                            transition-all duration-300
-                        "
+                        onClick={() => {
+                            setIsOpen(false);
+                            navigate("/auth");
+                        }}
+                        className="mt-4 px-4 py-2 rounded-lg border border-white/20 bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-300"
                     >
                         Sign Up
                     </button>
                 </div>
             </div>
-
-<<<<<<< HEAD
-            {/* Dummy Home Section */}
-            <div className="pt-28 px-6 text-white">
-                <h1 className="text-3xl font-bold">
-                    Welcome to Ecom
-                </h1>
-                <p className="mt-4 text-sm opacity-80">
-                    Mobile pe right to left swipe karo → sidebar open ho jayega.
-                </p>
-            </div>
-=======
-
->>>>>>> nitin
         </div>
     );
 };
