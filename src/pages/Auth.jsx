@@ -10,6 +10,7 @@ const Auth = () => {
         setdata({ ...data, [e.target.name]: e.target.value })
     }
 
+    // SIGNUP
     const signup = () => {
         const exist = JSON.parse(localStorage.getItem("userdata")) || []
 
@@ -27,9 +28,11 @@ const Auth = () => {
         }
 
         localStorage.setItem("userdata", JSON.stringify([...exist, data]))
+        alert("Signup success")
         setactive(true)
     }
 
+    // LOGIN
     const login = () => {
         const exist = JSON.parse(localStorage.getItem("userdata")) || []
 
@@ -47,23 +50,25 @@ const Auth = () => {
     }
 
     return (
-        <div className="min-h-screen overflow-hidden flex items-center justify-center bg-black px-4 overflow-hidden">
+        <div className="h-screen w-screen overflow-hidden relative bg-black flex items-center justify-center px-4">
 
-            {/* 🔥 Animated Blobs */}
-            <div className="absolute w-80 h-80 bg-purple-600 rounded-full blur-3xl opacity-30 top-10 left-5 animate-[blob_8s_infinite]"></div>
-            <div className="absolute w-80 h-80 bg-pink-500 rounded-full blur-3xl opacity-30 bottom-10 right-5 animate-[blob_10s_infinite]"></div>
+            {/* 🌈 CONTINUOUS GRADIENT BACKGROUND */}
+            <div className="absolute inset-0 -z-10 animate-gradient bg-[linear-gradient(270deg,#ff00cc,#3333ff,#00ffcc,#ff00cc)] bg-[length:600%_600%]"></div>
 
-            {/* 🔥 Card */}
-            <div className="w-full max-w-5xl flex flex-col md:flex-row backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl overflow-hidden shadow-2xl animate-fadeIn">
+            {/* 💫 FLOATING BLOBS */}
+            <div className="absolute w-[500px] h-[500px] bg-pink-500 opacity-20 blur-3xl rounded-full top-[-100px] left-[-100px] animate-float"></div>
+            <div className="absolute w-[400px] h-[400px] bg-purple-500 opacity-20 blur-3xl rounded-full bottom-[-100px] right-[-100px] animate-float2"></div>
+
+            {/* 🔥 CARD */}
+            <div className="w-full max-w-5xl flex flex-col md:flex-row backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
 
                 {/* LEFT */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-12 text-white text-center md:text-left">
-
-                    <h1 className="text-3xl md:text-5xl font-bold transition-all duration-500">
+                    <h1 className="text-3xl md:text-5xl font-bold">
                         {active ? "Welcome Back" : "Create Account"}
                     </h1>
 
-                    <p className="mt-3 text-gray-300 transition-all duration-500">
+                    <p className="mt-3 text-gray-300">
                         {active
                             ? "Login to continue your journey"
                             : "Join us and start your journey"}
@@ -71,7 +76,7 @@ const Auth = () => {
 
                     <button
                         onClick={() => setactive(!active)}
-                        className="mt-6 px-6 py-3 bg-white text-black rounded-full hover:scale-110 transition-all duration-300"
+                        className="mt-6 px-6 py-3 bg-white text-black rounded-full  transition"
                     >
                         {active ? "Switch to Signup" : "Switch to Login"}
                     </button>
@@ -80,7 +85,7 @@ const Auth = () => {
                 {/* RIGHT */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-10">
 
-                    <h2 className="text-2xl md:text-3xl text-white mb-6 transition-all duration-500">
+                    <h2 className="text-2xl md:text-3xl text-white mb-6">
                         {active ? "Login" : "Signup"}
                     </h2>
 
@@ -91,7 +96,7 @@ const Auth = () => {
                                 name="name"
                                 onChange={userdata}
                                 placeholder="Full Name"
-                                className="p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:scale-105 transition"
+                                className="p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500  transition"
                             />
                         )}
 
@@ -99,7 +104,7 @@ const Auth = () => {
                             name="email"
                             onChange={userdata}
                             placeholder="Email"
-                            className="p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:scale-105 transition"
+                            className="p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 focus:outline-none  focus:ring-2 focus:ring-pink-500 transition"
                         />
 
                         <input
@@ -107,12 +112,12 @@ const Auth = () => {
                             type="password"
                             onChange={userdata}
                             placeholder="Password"
-                            className="p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:scale-105 transition"
+                            className="p-3 rounded-xl bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500  transition"
                         />
 
                         <button
                             onClick={active ? login : signup}
-                            className="mt-4 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold hover:scale-110 transition-all duration-300"
+                            className="mt-4 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold hover:scale-110 transition"
                         >
                             {active ? "Login" : "Create Account"}
                         </button>
@@ -120,23 +125,35 @@ const Auth = () => {
                     </div>
                 </div>
             </div>
-
-            {/* 🔥 Custom Animations */}
+ 
             <style>
                 {`
-                @keyframes blob {
-                    0%, 100% { transform: translate(0,0) scale(1); }
-                    33% { transform: translate(30px,-50px) scale(1.1); }
-                    66% { transform: translate(-20px,20px) scale(0.9); }
+                @keyframes gradientMove {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
                 }
 
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
+                .animate-gradient {
+                  animation: gradientMove 12s ease infinite;
                 }
 
-                .animate-fadeIn {
-                    animation: fadeIn 0.8s ease forwards;
+                @keyframes float {
+                  0%,100% { transform: translateY(0px); }
+                  50% { transform: translateY(-40px); }
+                }
+
+                @keyframes float2 {
+                  0%,100% { transform: translateY(0px); }
+                  50% { transform: translateY(40px); }
+                }
+
+                .animate-float {
+                  animation: float 6s ease-in-out infinite;
+                }
+
+                .animate-float2 {
+                  animation: float2 8s ease-in-out infinite;
                 }
                 `}
             </style>
