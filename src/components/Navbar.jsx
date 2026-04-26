@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [name, setname] = useState("");
+    const [name, setName] = useState("");
 
     const navigate = useNavigate();
     const navItems = ["Home", "About", "Products", "Cart"];
@@ -14,14 +14,14 @@ const Navbar = () => {
         const token = JSON.parse(localStorage.getItem("token"));
 
         if (token && exist.length > 0) {
-            setname(exist[0].name);
+            setName(exist[0].name);
         }
     };
 
     const logout = () => {
         localStorage.removeItem("userdata");
         localStorage.removeItem("token");
-        setname("");
+        setName("");
         navigate("/auth");
     };
 
@@ -34,26 +34,27 @@ const Navbar = () => {
             {/* Navbar */}
             <nav className="fixed top-0 left-0 w-full z-50 px-4 py-3">
                 <div className="flex justify-between items-center rounded-xl 
-                bg-[#0f172a]/80 backdrop-blur-md border border-white/10 
+                border border-white/10 
+                bg-[#0f172a]/70 backdrop-blur-lg 
                 px-5 py-3 shadow-lg">
 
                     {/* Logo */}
                     <h1
                         onClick={() => navigate("/")}
-                        className="text-xl font-bold text-white cursor-pointer"
+                        className="text-lg font-bold text-white cursor-pointer"
                     >
                         Ecom
                     </h1>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex gap-8">
+                    <div className="hidden md:flex gap-6">
                         {navItems.map((item, index) => (
-                            <p
-                                key={index}
-                                className="text-gray-300 hover:text-white transition cursor-pointer"
-                            >
-                                {item}
-                            </p>
+                            <div key={index} className="relative group cursor-pointer">
+                                <p className="text-gray-300 text-sm font-medium group-hover:text-white transition">
+                                    {item}
+                                </p>
+                                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                            </div>
                         ))}
                     </div>
 
@@ -61,13 +62,13 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center gap-3">
                         {name ? (
                             <>
-                                <span className="text-sm text-gray-300">
-                                    Hi, <span className="text-white font-semibold">{name}</span>
+                                <span className="text-gray-300 text-sm">
+                                    👋 Hi <span className="text-white font-semibold">{name}</span>
                                 </span>
 
                                 <button
                                     onClick={logout}
-                                    className="px-3 py-1 text-sm rounded-md bg-red-500 hover:bg-red-600 text-white transition"
+                                    className="px-3 py-1 text-xs rounded-md bg-red-500/80 hover:bg-red-600 text-white transition"
                                 >
                                     Logout
                                 </button>
@@ -75,14 +76,15 @@ const Navbar = () => {
                         ) : (
                             <button
                                 onClick={() => navigate("/auth")}
-                                className="px-4 py-2 rounded-md text-sm bg-blue-600 hover:bg-blue-700 text-white transition"
+                                className="px-4 py-2 rounded-lg text-sm 
+                                bg-blue-500/80 hover:bg-blue-600 text-white transition"
                             >
                                 Sign Up
                             </button>
                         )}
                     </div>
 
-                    {/* Mobile Menu */}
+                    {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(true)}
                         className="md:hidden text-white"
@@ -100,19 +102,21 @@ const Navbar = () => {
                 }`}
             ></div>
 
-            {/* Sidebar */}
+            {/* Mobile Sidebar */}
             <div
                 className={`fixed top-0 right-0 h-screen w-[240px] z-50
                 bg-[#020617] text-white p-5
                 transition-transform duration-300
                 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
+                {/* Close */}
                 <div className="flex justify-end">
                     <button onClick={() => setIsOpen(false)}>
                         <X size={24} />
                     </button>
                 </div>
 
+                {/* Menu */}
                 <div className="mt-8 flex flex-col gap-6">
                     {navItems.map((item, index) => (
                         <div
@@ -124,10 +128,11 @@ const Navbar = () => {
                         </div>
                     ))}
 
+                    {/* Mobile User */}
                     {name ? (
                         <>
                             <p className="text-gray-400 mt-4">
-                                Hi, <span className="text-white">{name}</span>
+                                👋 Hi <span className="text-white">{name}</span>
                             </p>
                             <button
                                 onClick={logout}
@@ -142,7 +147,7 @@ const Navbar = () => {
                                 setIsOpen(false);
                                 navigate("/auth");
                             }}
-                            className="mt-4 px-4 py-2 rounded-md bg-blue-600"
+                            className="mt-4 px-4 py-2 rounded-md bg-blue-500"
                         >
                             Sign Up
                         </button>
