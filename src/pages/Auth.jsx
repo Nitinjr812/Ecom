@@ -10,7 +10,6 @@ const Auth = () => {
         setdata({ ...data, [e.target.name]: e.target.value })
     }
 
-    // SIGNUP
     const signup = () => {
         const exist = JSON.parse(localStorage.getItem("userdata")) || []
 
@@ -26,13 +25,14 @@ const Auth = () => {
             setactive(true)
             return
         }
-
+        const token = true
         localStorage.setItem("userdata", JSON.stringify([...exist, data]))
         alert("Signup success")
         setactive(true)
+        navigate("/")
+        localStorage.setItem("token", JSON.stringify(token))
     }
 
-    // LOGIN
     const login = () => {
         const exist = JSON.parse(localStorage.getItem("userdata")) || []
 
@@ -46,23 +46,22 @@ const Auth = () => {
         }
 
         localStorage.setItem("currentUser", JSON.stringify(valid))
+        alert("welcome back")
         navigate("/")
+        const token = true
+        localStorage.setItem("token", JSON.stringify(token))
     }
 
     return (
         <div className="h-screen w-screen overflow-hidden relative bg-black flex items-center justify-center px-4">
 
-            {/* 🌈 CONTINUOUS GRADIENT BACKGROUND */}
             <div className="absolute inset-0 -z-10 animate-gradient bg-[linear-gradient(270deg,#ff00cc,#3333ff,#00ffcc,#ff00cc)] bg-[length:600%_600%]"></div>
 
-            {/* 💫 FLOATING BLOBS */}
             <div className="absolute w-[500px] h-[500px] bg-pink-500 opacity-20 blur-3xl rounded-full top-[-100px] left-[-100px] animate-float"></div>
             <div className="absolute w-[400px] h-[400px] bg-purple-500 opacity-20 blur-3xl rounded-full bottom-[-100px] right-[-100px] animate-float2"></div>
 
-            {/* 🔥 CARD */}
             <div className="w-full max-w-5xl flex flex-col md:flex-row backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
 
-                {/* LEFT */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-12 text-white text-center md:text-left">
                     <h1 className="text-3xl md:text-5xl font-bold">
                         {active ? "Welcome Back" : "Create Account"}
@@ -125,7 +124,7 @@ const Auth = () => {
                     </div>
                 </div>
             </div>
- 
+
             <style>
                 {`
                 @keyframes gradientMove {
