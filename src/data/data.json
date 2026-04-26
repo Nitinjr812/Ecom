@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "image": "/images/product-image-one.webp",
+    "heading": "Fast Delivery",
+    "description": "Get your products delivered quickly."
+  },
+  {
+    "id": 2,
+    "image": "/images/shit-image-4300034_1280.webp",
+    "heading": "Fresh Products",
+    "description": "Daily fresh items available."
+  },
+  {
+    "id": 3,
+    "image": "/images/young-woman-sitting-on-edge-looks-out-at-view.webp",
+    "heading": "Fresh Products",
+    "description": "Daily fresh items available."
+  },
+  {
+    "id": 4,
+    "image": "/images/super-colorful-splash-ink-liquid-art-free-image.webp",
+    "heading": "Best Prices",
+    "description": "Affordable deals for everyone."
+  }
+]

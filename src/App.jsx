@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Auth from "./pages/Auth"
+import Crousel from "./components/Crousel"
 
 function App() {
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Crousel from "./Crousel";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -154,6 +155,7 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
+            <Crousel/>
         </>
     );
 };
