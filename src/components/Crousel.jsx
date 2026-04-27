@@ -8,7 +8,6 @@ import data from "../data/data.json";
 const Crousel = () => {
   return (
     <div className="w-full flex justify-center items-center mt-20">
-
       <div className="w-[800px]">
         <Swiper
           spaceBetween={30}
