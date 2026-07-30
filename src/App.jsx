@@ -1,16 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Auth from "./pages/Auth"
-import Crousel from "./components/Crousel"
+import Estaterahomepreview from "./pages/Estaterahomepreview"
 
 function App() {
-
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter> 
         <Routes>
-          <Route path="/" Component={Navbar} />
-          <Route path="/Auth" Component={Auth} />
+          <Route path="/" element={<Estaterahomepreview />} />
+          <Route path="/auth" element={<Auth />} />
         </Routes>
       </BrowserRouter>
     </>
